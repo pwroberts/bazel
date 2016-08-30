@@ -149,6 +149,13 @@ public class ArtifactTest {
   }
 
   @Test
+  public void testGetExtension() throws Exception {
+    Root root = Root.asSourceRoot(scratch.dir("/foo"));
+    Artifact javaFile = new Artifact(scratch.file("/foo/Bar.java"), root);
+    assertEquals("java", javaFile.getExtension());
+  }
+
+  @Test
   public void testMangledPath() {
     String path = "dir/sub_dir/name:end";
     assertEquals("dir_Ssub_Udir_Sname_Cend", Actions.escapedPath(path));

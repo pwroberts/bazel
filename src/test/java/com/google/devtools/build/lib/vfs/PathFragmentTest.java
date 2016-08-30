@@ -281,6 +281,19 @@ public class PathFragmentTest {
     assertThat(new PathFragment("").getBaseName()).isEmpty();
   }
 
+  @Test
+  public void testFileExtension() throws Exception {
+    assertEquals("bar", new PathFragment("foo.bar").getFileExtension());
+    assertEquals("barr", new PathFragment("foo.barr").getFileExtension());
+    assertEquals("b", new PathFragment("foo.b").getFileExtension());
+    assertEquals("", new PathFragment("foo.").getFileExtension());
+    assertEquals("", new PathFragment("foo").getFileExtension());
+    assertEquals("", new PathFragment(".").getFileExtension());
+    assertEquals("", new PathFragment("").getFileExtension());
+    assertEquals("baz", new PathFragment("foo/bar.baz").getFileExtension());
+    assertEquals("baz", new PathFragment("foo.bar.baz").getFileExtension());
+  }
+
   private static void assertPath(String expected, PathFragment actual) {
     assertEquals(expected, actual.getPathString());
   }
